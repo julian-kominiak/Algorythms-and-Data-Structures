@@ -61,32 +61,34 @@ def heapSort(array):
     for i in range(len(array) - 1, 0, -1):
         array[i], array[0] = array[0], array[i]
         heap(array, i, 0)
+    return array
 
 
 def mergeSort(array):
     def merge(array, left, medium, right):
-        leftElement = array[left:(medium + 1)]
-        rightElement = array[(medium + 1):(right + 1)]
+        leftSide = array[left:(medium + 1)]
+        rightSide = array[(medium + 1):(right + 1)]
         i = left
-        while len(leftElement) > 0 and len(rightElement) > 0:
-            if leftElement[0] <= rightElement[0]:
-                array[i] = leftElement.pop(0)
+        while len(leftSide) > 0 and len(rightSide) > 0:
+            if leftSide[0] <= rightSide[0]:
+                array[i] = leftSide.pop(0)
             else:
-                array[i] = rightElement.pop(0)
+                array[i] = rightSide.pop(0)
             i += 1
-        while len(leftElement) > 0:
-            array[i] = leftElement.pop(0)
+        while len(leftSide) > 0:
+            array[i] = leftSide.pop(0)
             i += 1
-        while len(rightElement) > 0:
-            array[i] = rightElement.pop(0)
+        while len(rightSide) > 0:
+            array[i] = rightSide.pop(0)
             i += 1
 
-    def recursion(arr, left, right):
+    def recursion(array, left, right):
         if left < right:
             medium = (left + right) // 2
-            recursion(arr, left, medium)  # Lewa połowa
-            recursion(arr, medium + 1, right)  # Prawa połowa
-            merge(arr, left, medium, right)
+            recursion(array, left, medium)
+            recursion(array, medium + 1, right)
+            merge(array, left, medium, right)
+
     recursion(array, 0, len(array) - 1)
     return array
 
@@ -121,6 +123,7 @@ def testAlgorithm(array, function):
         line += str(round((stop - start) * 1000, 5)).rjust(20)
     line += str(round(sum(times) / 3, 5)).rjust(25)
     print(line)
+
 
 testAlgorithm(table100, insertSort)
 testAlgorithm(table10000, insertSort)
