@@ -46,8 +46,8 @@ def differentialEvolution(function, leftEnd, rightEnd, populationSize,
             temp = []
             for j in range(dimension):
                 r = random.random()
-                di = random.randint(0, dimension - 1)
-                if r > crossoverProbability and j != di:
+                index = random.randint(0, dimension - 1)
+                if r > crossoverProbability and j != index:
                     temp.append(population[i][j])
                 else:
                     temp.append(mutatedSubjects[i][j])

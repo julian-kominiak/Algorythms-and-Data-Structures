@@ -43,8 +43,7 @@ def geneticAlgorithm(function, leftEnd, rightEnd, populationSize,
             if lambdaList[subject] < mutationProbability:
                 ksi = random.uniform(-0.5, 0.5)
                 for parameter in population[subject]:
-                    if parameter < mutationProbability:
-                        parameter = max(min(parameter + ksi, rightEnd), leftEnd)
+                    parameter = max(min(parameter + ksi, rightEnd), leftEnd)
 
         for subject in range(populationSize - 1):
             population.append(crossover(population[subject], population[subject + 1], leftEnd, rightEnd))
